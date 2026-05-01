@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenEdge Landscapes — Premium Landscaping in Australia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+<style>
+/* ===== COLOR SYSTEM ===== */
+:root {
+  /* 9 Green Shades — primary palette */
+  --green-50:  hsl(142, 62%, 96%);
+  --green-100: hsl(142, 56%, 88%);
+  --green-200: hsl(142, 50%, 74%);
+  --green-300: hsl(142, 47%, 58%);
+  --green-400: hsl(142, 45%, 44%);
+  --green-500: hsl(142, 48%, 34%);
+  --green-600: hsl(142, 51%, 26%);
+  --green-700: hsl(142, 54%, 19%);
+  --green-800: hsl(142, 58%, 12%);
+
+  /* 9 Green-Hued Neutrals — same hue, drained saturation */
+  --neutral-50:  hsl(142, 14%, 97%);
+  --neutral-100: hsl(142, 9%,  93%);
+  --neutral-200: hsl(142, 7%,  83%);
+  --neutral-300: hsl(142, 5%,  68%);
+  --neutral-400: hsl(142, 4%,  52%);
+  --neutral-500: hsl(142, 4%,  38%);
+  --neutral-600: hsl(142, 5%,  28%);
+  --neutral-700: hsl(142, 6%,  19%);
+  --neutral-800: hsl(142, 8%,  12%);
+
+  /* Accent — success */
+  --success:       hsl(142, 65%, 38%);
+  --success-light: hsl(142, 60%, 93%);
+
+  /* Accent — warning */
+  --warning:       hsl(38, 90%, 50%);
+  --warning-dark:  hsl(38, 85%, 38%);
+  --warning-light: hsl(38, 88%, 93%);
+
+  /* Semantic tokens */
+  --bg:             var(--neutral-50);
+  --surface:        #ffffff;
+  --text-primary:   var(--neutral-800);
+  --text-secondary: var(--neutral-500);
+  --text-muted:     var(--neutral-400);
+  --border:         var(--neutral-200);
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+
+  /* Spacing scale — doubling + ×1.5 midpoints */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  20px;
+  --sp-6:  24px;
+  --sp-8:  32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+  --sp-24: 96px;
+
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 200;
+  background: hsla(142, 14%, 97%, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--sp-8);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--green-700);
+  letter-spacing: -0.02em;
+}
+.nav-logo em {
+  font-style: italic;
+  color: var(--green-400);
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--neutral-600);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--green-600); }
+.nav-cta {
+  background: var(--green-600) !important;
+  color: white !important;
+  padding: var(--sp-2) var(--sp-5) !important;
+  border-radius: var(--radius);
+  transition: background 0.2s, transform 0.15s !important;
+}
+.nav-cta:hover { background: var(--green-700) !important; transform: translateY(-1px); }
+
+/* ===== HERO SLIDER ===== */
+.hero {
+  margin-top: 64px;
+  position: relative;
+  height: calc(100vh - 64px);
+  min-height: 520px;
+  overflow: hidden;
+}
+.hero-track {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+  transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.hero-slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  transform: scale(1.06);
+  transition: transform 9s ease-out;
+}
+.hero-slide.active img {
+  transform: scale(1.0);
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    108deg,
+    hsla(142, 58%, 8%, 0.78) 0%,
+    hsla(142, 40%, 12%, 0.42) 55%,
+    transparent 100%
+  );
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sp-20) var(--sp-16);
+}
+.hero-content { max-width: 660px; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  background: hsla(142, 60%, 50%, 0.18);
+  border: 1px solid hsla(142, 55%, 65%, 0.30);
+  color: var(--green-100);
+  padding: var(--sp-1) var(--sp-4);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-5);
+  backdrop-filter: blur(6px);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  font-weight: 600;
+  color: white;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--sp-5);
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--green-200);
+}
+.hero-sub {
+  font-size: 1.05rem;
+  color: hsla(0, 0%, 100%, 0.78);
+  max-width: 460px;
+  line-height: 1.7;
+  margin-bottom: var(--sp-8);
+  font-weight: 300;
+}
+.hero-actions { display: flex; gap: var(--sp-3); flex-wrap: wrap; }
+.btn-primary {
+  background: var(--green-400);
+  color: white;
+  padding: var(--sp-3) var(--sp-8);
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+  background: var(--green-300);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px hsla(142, 50%, 42%, 0.42);
+}
+.btn-ghost {
+  background: transparent;
+  color: white;
+  padding: var(--sp-3) var(--sp-8);
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 1px solid hsla(0, 0%, 100%, 0.36);
+  cursor: pointer;
+  display: inline-block;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn-ghost:hover {
+  background: hsla(0, 0%, 100%, 0.1);
+  border-color: hsla(0, 0%, 100%, 0.6);
+}
+.hero-controls {
+  position: absolute;
+  bottom: var(--sp-8);
+  left: var(--sp-20);
+  right: var(--sp-8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hero-dots { display: flex; gap: var(--sp-2); }
+.hero-dot {
+  height: 3px;
+  width: 28px;
+  border-radius: 2px;
+  background: hsla(0,0%,100%,0.32);
+  cursor: pointer;
+  transition: width 0.3s, background 0.3s;
+}
+.hero-dot.active { width: 52px; background: white; }
+.hero-arrows { display: flex; gap: var(--sp-2); }
+.hero-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: hsla(0,0%,100%,0.12);
+  border: 1px solid hsla(0,0%,100%,0.22);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.2s;
+  backdrop-filter: blur(6px);
+}
+.hero-arrow:hover { background: hsla(0,0%,100%,0.24); }
+
+/* ===== SHARED SECTION LAYOUT ===== */
+.section { padding: var(--sp-24) var(--sp-8); }
+.container { max-width: 1160px; margin: 0 auto; padding: 0 var(--sp-6); }
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--success);
+  margin-bottom: var(--sp-2);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  color: var(--neutral-800);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--sp-4);
+}
+.section-sub {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  line-height: 1.7;
+}
+.section-header { margin-bottom: var(--sp-12); }
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right {
+  opacity: 0;
+  transform: translateX(36px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.18s; }
+.d3 { transition-delay: 0.28s; }
+.d4 { transition-delay: 0.38s; }
+
+/* ===== SERVICES ===== */
+#services { background: var(--surface); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-5);
+}
+.service-card {
+  background: var(--neutral-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-8);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-400), var(--green-200));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.service-card:hover { box-shadow: 0 12px 40px hsla(142, 30%, 18%, 0.1); transform: translateY(-3px); }
+.service-card:hover::after { opacity: 1; }
+.service-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius);
+  background: var(--success-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: var(--sp-5);
+}
+.service-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--neutral-800);
+  margin-bottom: var(--sp-2);
+}
+.service-desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7; }
+
+/* ===== ABOUT ===== */
+#about { background: var(--green-800); }
+#about .section-label { color: var(--green-300); }
+#about .section-title { color: white; }
+#about .section-sub { color: hsla(0,0%,100%,0.68); max-width: 460px; }
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-16);
+  align-items: center;
+}
+.about-img-wrap {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  position: relative;
+}
+.about-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.about-badge {
+  position: absolute;
+  bottom: var(--sp-5);
+  right: var(--sp-5);
+  background: var(--green-600);
+  color: white;
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.about-badge strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-5);
+  margin-top: var(--sp-10);
+  padding-top: var(--sp-8);
+  border-top: 1px solid hsla(0,0%,100%,0.1);
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--green-300);
+  line-height: 1;
+  margin-bottom: var(--sp-1);
+}
+.stat-label { font-size: 0.82rem; color: hsla(0,0%,100%,0.55); }
+
+/* ===== PORTFOLIO ===== */
+#portfolio { background: var(--neutral-50); }
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+}
+.p-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  aspect-ratio: 4/3;
+}
+.p-card:nth-child(1) { grid-column: span 2; aspect-ratio: 16/9; }
+.p-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s ease; }
+.p-card:hover img { transform: scale(1.06); }
+.p-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, hsla(142, 58%, 8%, 0.82) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--sp-5);
+}
+.p-card:hover .p-overlay { opacity: 1; }
+.p-label {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  line-height: 1.3;
+}
+
+/* ===== TESTIMONIALS — messy grid ===== */
+#testimonials { background: var(--surface); }
+.t-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--sp-5);
+  position: relative;
+}
+
+/* Card base */
+.tcard {
+  background: var(--neutral-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  position: relative;
+  box-shadow: 0 2px 8px hsla(142, 15%, 15%, 0.04);
+}
+/* Intentionally messy placements — different column spans + slight rotations + margin offsets */
+.tcard:nth-child(1) {
+  grid-column: 1 / 7;
+  transform: rotate(-1.1deg);
+  margin-top: 20px;
+  background: var(--green-50);
+  border-color: var(--green-100);
+}
+.tcard:nth-child(2) {
+  grid-column: 7 / 10;
+  transform: rotate(0.7deg);
+  margin-top: -10px;
+}
+.tcard:nth-child(3) {
+  grid-column: 10 / 13;
+  transform: rotate(-0.6deg);
+  margin-top: 28px;
+}
+.tcard:nth-child(4) {
+  grid-column: 1 / 4;
+  transform: rotate(1.4deg);
+  margin-top: -8px;
+  background: var(--green-800);
+  border-color: var(--green-700);
+}
+.tcard:nth-child(5) {
+  grid-column: 4 / 9;
+  transform: rotate(-0.8deg);
+  margin-top: 12px;
+}
+.tcard:nth-child(6) {
+  grid-column: 9 / 13;
+  transform: rotate(1.0deg);
+  margin-top: -4px;
+}
+
+/* Dark card text overrides */
+.tcard:nth-child(4) .tcard-text { color: hsla(0,0%,100%,0.88); }
+.tcard:nth-child(4) .tcard-name { color: white; }
+.tcard:nth-child(4) .tcard-role { color: var(--green-300); }
+.tcard:nth-child(4) .stars { color: var(--warning); }
+
+.stars { color: var(--warning); font-size: 0.82rem; letter-spacing: 2px; margin-bottom: var(--sp-3); }
+.tcard-text {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--neutral-700);
+  line-height: 1.65;
+  margin-bottom: var(--sp-4);
+}
+.tcard-author { display: flex; align-items: center; gap: var(--sp-3); }
+.tcard-av {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--green-200);
+  color: var(--green-700);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.tcard-name { font-size: 0.85rem; font-weight: 600; color: var(--neutral-800); }
+.tcard-role { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ===== CONTACT & MAP ===== */
+#contact { background: var(--neutral-50); }
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-12);
+  align-items: start;
+}
+/* Form */
+.form-group { margin-bottom: var(--sp-5); }
+.form-label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--neutral-700); margin-bottom: var(--sp-2); }
+.form-input {
+  width: 100%;
+  padding: 10px var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background: white;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+}
+.form-input:focus {
+  border-color: var(--green-400);
+  box-shadow: 0 0 0 3px hsla(142, 50%, 44%, 0.12);
+}
+textarea.form-input { resize: vertical; min-height: 110px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+.btn-submit {
+  width: 100%;
+  background: var(--green-600);
+  color: white;
+  padding: var(--sp-4);
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: var(--sp-2);
+}
+.btn-submit:hover { background: var(--green-700); transform: translateY(-1px); }
+.btn-submit:disabled { opacity: 0.65; cursor: default; transform: none; }
+.form-success {
+  display: none;
+  background: var(--success-light);
+  border: 1px solid var(--green-200);
+  border-radius: var(--radius);
+  padding: var(--sp-4) var(--sp-5);
+  color: var(--green-700);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: var(--sp-4);
+  gap: var(--sp-2);
+  align-items: center;
+}
+/* Map */
+.map-wrap {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  height: 380px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 24px hsla(142, 20%, 18%, 0.07);
+}
+.map-wrap iframe { width: 100%; height: 100%; border: 0; }
+.contact-info {
+  margin-top: var(--sp-5);
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+}
+.ci-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+.ci-item:last-child { margin-bottom: 0; }
+.ci-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+.ci-strong { font-weight: 600; color: var(--text-primary); display: block; font-size: 0.82rem; margin-bottom: 1px; }
+
+/* ===== FLOATING ACTION BUTTON ===== */
+.fab {
+  position: fixed;
+  bottom: var(--sp-8);
+  right: var(--sp-8);
+  z-index: 300;
+  background: var(--green-500);
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: var(--sp-3) var(--sp-6);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  box-shadow: 0 8px 28px hsla(142, 48%, 28%, 0.38);
+  transition: background 0.2s, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, opacity 0.25s;
+}
+.fab:hover {
+  background: var(--green-600);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px hsla(142, 48%, 28%, 0.48);
+}
+.fab.hidden { transform: translateY(80px); opacity: 0; pointer-events: none; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--neutral-800);
+  color: hsla(0,0%,100%,0.65);
+  padding: var(--sp-16) var(--sp-8) var(--sp-8);
+}
+.footer-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: var(--sp-12);
+  padding-bottom: var(--sp-10);
+  border-bottom: 1px solid hsla(0,0%,100%,0.08);
+}
+.footer-logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--green-300); margin-bottom: var(--sp-4); display: block; }
+.footer-logo em { font-style: italic; color: var(--green-400); }
+.footer-desc { font-size: 0.85rem; line-height: 1.75; margin-bottom: var(--sp-5); }
+.footer-col h4 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: white; margin-bottom: var(--sp-4); }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: var(--sp-2); }
+.footer-col a { font-size: 0.85rem; transition: color 0.2s; }
+.footer-col a:hover { color: var(--green-300); }
+.fi { display: flex; align-items: center; gap: var(--sp-2); font-size: 0.85rem; margin-bottom: var(--sp-3); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--sp-6);
+  font-size: 0.78rem;
+}
+
+/* ===== HAMBURGER & MOBILE MENU ===== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius);
+  transition: background 0.2s;
+  z-index: 210;
+}
+.hamburger:hover { background: var(--neutral-100); }
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--neutral-700);
+  border-radius: 2px;
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s,
+              width 0.3s;
+}
+.hamburger span:nth-child(1) { width: 22px; }
+.hamburger span:nth-child(2) { width: 16px; }
+.hamburger span:nth-child(3) { width: 20px; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 22px; }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 22px; }
+
+/* Mobile menu drawer */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 64px 0 0 0;
+  z-index: 190;
+  background: white;
+  padding: var(--sp-6) var(--sp-6) var(--sp-8);
+  flex-direction: column;
+  gap: var(--sp-1);
+  border-top: 1px solid var(--border);
+  transform: translateY(-12px);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s ease;
+  pointer-events: none;
+  overflow-y: auto;
+}
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+.mobile-menu a {
+  display: block;
+  padding: var(--sp-4) var(--sp-3);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--neutral-700);
+  border-radius: var(--radius);
+  transition: background 0.15s, color 0.15s;
+  border-bottom: 1px solid var(--neutral-100);
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { background: var(--neutral-50); color: var(--green-600); }
+.mobile-menu .mob-cta {
+  margin-top: var(--sp-4);
+  background: var(--green-600);
+  color: white !important;
+  text-align: center;
+  border-radius: var(--radius);
+  border-bottom: none !important;
+  font-weight: 600;
+  padding: var(--sp-4);
+}
+.mobile-menu .mob-cta:hover { background: var(--green-700) !important; }
+/* Overlay behind drawer */
+.menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 64px 0 0 0;
+  z-index: 180;
+  background: hsla(142, 10%, 8%, 0.4);
+  backdrop-filter: blur(2px);
+}
+.menu-overlay.open { display: block; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 960px) {
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .about-layout { grid-template-columns: 1fr; }
+  .t-grid { grid-template-columns: repeat(6, 1fr); }
+  .tcard:nth-child(1) { grid-column: 1 / 7; }
+  .tcard:nth-child(2) { grid-column: 1 / 4; }
+  .tcard:nth-child(3) { grid-column: 4 / 7; }
+  .tcard:nth-child(4) { grid-column: 1 / 4; }
+  .tcard:nth-child(5) { grid-column: 4 / 7; }
+  .tcard:nth-child(6) { grid-column: 1 / 7; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+  .p-card:nth-child(1) { grid-column: span 2; }
+}
+@media (max-width: 640px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-overlay { padding: var(--sp-6) var(--sp-6) var(--sp-12); }
+  .hero-controls { left: var(--sp-6); }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+  .t-grid { grid-template-columns: 1fr; }
+  .tcard:nth-child(n) { grid-column: 1 / -1; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .p-card:nth-child(1) { grid-column: span 1; aspect-ratio: 4/3; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .fab { bottom: var(--sp-5); right: var(--sp-5); }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-logo">Green<em>Edge</em></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu drawer -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" class="mob-link">Services</a>
+  <a href="#about"    class="mob-link">About</a>
+  <a href="#portfolio" class="mob-link">Our Work</a>
+  <a href="#testimonials" class="mob-link">Reviews</a>
+  <a href="#contact"  class="mob-cta">Get a Free Quote</a>
+</div>
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- ===== HERO SLIDER ===== -->
+<div class="hero" id="hero">
+  <div class="hero-track" id="heroTrack">
+
+    <div class="hero-slide active">
+      <img src="images/slide-1.jpeg" alt="Beautiful garden landscape design">
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <div class="hero-badge">🌿 Serving Australia</div>
+          <h1 class="hero-title">Spaces that <em>breathe</em><br>with life</h1>
+          <p class="hero-sub">Premium landscaping design and maintenance built for the Australian climate. Residential and commercial.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary">Get Free Quote</a>
+            <a href="#portfolio" class="btn-ghost">See Our Work</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <img src="images/slide-2.jpg" alt="Lush garden in bloom">
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <div class="hero-badge">🌱 Design & Build</div>
+          <h1 class="hero-title">Crafted with <em>intent</em><br>and care</h1>
+          <p class="hero-sub">From concept to completion — we handle every detail so your outdoor space feels exactly as it should.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary">Book a Consult</a>
+            <a href="#services" class="btn-ghost">Our Services</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <img src="images/slide-3.jpeg" alt="Professional lawn care">
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <div class="hero-badge">✂️ Ongoing Maintenance</div>
+          <h1 class="hero-title">Always <em>pristine</em>,<br>always on time</h1>
+          <p class="hero-sub">Reliable scheduled maintenance that keeps your property looking its best through every season.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary">Get Started</a>
+            <a href="#about" class="btn-ghost">About Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hero-controls">
+    <div class="hero-dots" id="heroDots">
+      <div class="hero-dot active" data-i="0"></div>
+      <div class="hero-dot" data-i="1"></div>
+      <div class="hero-dot" data-i="2"></div>
+    </div>
+    <div class="hero-arrows">
+      <button class="hero-arrow" id="heroPrev" aria-label="Previous slide">←</button>
+      <button class="hero-arrow" id="heroNext" aria-label="Next slide">→</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section class="section" id="services" style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">What We Do</p>
+      <h2 class="section-title">Full-scope landscaping services</h2>
+      <p class="section-sub">From a single garden bed to a complete property transformation — we have the expertise.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal d1">
+        <div class="service-icon">🌱</div>
+        <h3 class="service-title">Garden Design</h3>
+        <p class="service-desc">Bespoke designs tailored to your property, lifestyle, and local climate. We plan every detail before a single shovel hits the ground.</p>
+      </div>
+      <div class="service-card reveal d2">
+        <div class="service-icon">✂️</div>
+        <h3 class="service-title">Lawn Maintenance</h3>
+        <p class="service-desc">Regular mowing, edging, and fertilising that keeps your lawn thick, healthy, and looking sharp all year round.</p>
+      </div>
+      <div class="service-card reveal d3">
+        <div class="service-icon">🪨</div>
+        <h3 class="service-title">Hardscaping</h3>
+        <p class="service-desc">Patios, pathways, retaining walls, and entertaining areas. Built to last and designed to complement your surroundings.</p>
+      </div>
+      <div class="service-card reveal d1">
+        <div class="service-icon">💧</div>
+        <h3 class="service-title">Irrigation Systems</h3>
+        <p class="service-desc">Smart, water-efficient irrigation built for Australian conditions. Set and forget — with remote monitoring options available.</p>
+      </div>
+      <div class="service-card reveal d2">
+        <div class="service-icon">🌳</div>
+        <h3 class="service-title">Tree & Shrub Care</h3>
+        <p class="service-desc">Pruning, shaping, and long-term health management for trees and shrubs. We help your plants thrive for years.</p>
+      </div>
+      <div class="service-card reveal d3">
+        <div class="service-icon">🏢</div>
+        <h3 class="service-title">Commercial Grounds</h3>
+        <p class="service-desc">Ongoing contract maintenance for commercial properties, body corporates, and strata. Professional, reliable, and fully insured.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="section" id="about" style="background: var(--green-800);">
+  <div class="container">
+    <div class="about-layout">
+      <div class="reveal-left">
+        <p class="section-label">Who We Are</p>
+        <h2 class="section-title">Built on trust,<br>driven by craft</h2>
+        <p class="section-sub">We started as a small family operation with one mission: do the job properly, every time. That hasn't changed — what's grown is our team, our reach, and the number of Australian properties we're proud to call our work.</p>
+        <div class="stats-row">
+          <div>
+            <div class="stat-num">12+</div>
+            <div class="stat-label">Years in operation</div>
+          </div>
+          <div>
+            <div class="stat-num">430</div>
+            <div class="stat-label">Projects completed</div>
+          </div>
+          <div>
+            <div class="stat-num">98%</div>
+            <div class="stat-label">Satisfaction rate</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-img-wrap reveal-right">
+        <img src="images/about.jpeg" alt="Landscaping team at work">
+        <div class="about-badge">
+          <strong>4.9★</strong>
+          Google Reviews
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PORTFOLIO ===== -->
+<section class="section" id="portfolio" style="background: var(--neutral-50);">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">Recent Work</p>
+      <h2 class="section-title">Projects we're proud of</h2>
+      <p class="section-sub">Every property has its own story. Here are a few of ours.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="p-card reveal d1">
+        <img src="images/portfolio-1.webp" alt="Backyard transformation">
+        <div class="p-overlay"><span class="p-label">Backyard Transformation — Residential</span></div>
+      </div>
+      <div class="p-card reveal d2">
+        <img src="images/portfolio-2.jpg" alt="Native garden design">
+        <div class="p-overlay"><span class="p-label">Native Garden Design</span></div>
+      </div>
+      <div class="p-card reveal d1">
+        <img src="images/portfolio-3.jpeg" alt="Lawn care">
+        <div class="p-overlay"><span class="p-label">Estate Lawn Care</span></div>
+      </div>
+      <div class="p-card reveal d2">
+        <img src="images/portfolio-4.jpg" alt="Commercial grounds">
+        <div class="p-overlay"><span class="p-label">Commercial Grounds</span></div>
+      </div>
+      <div class="p-card reveal d3">
+        <img src="images/portfolio-5.webp" alt="Outdoor entertaining">
+        <div class="p-overlay"><span class="p-label">Outdoor Entertaining Area</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section" id="testimonials" style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">Client Reviews</p>
+      <h2 class="section-title">Straight from the people we work for</h2>
+    </div>
+    <div class="t-grid">
+
+      <div class="tcard reveal d1">
+        <div class="stars">★★★★★</div>
+        <p class="tcard-text">"Honestly can't believe how different our backyard looks. They took something pretty average and turned it into a space we actually use every single weekend."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">SL</div>
+          <div><div class="tcard-name">Sarah L.</div><div class="tcard-role">Homeowner, Victoria</div></div>
+        </div>
+      </div>
+
+      <div class="tcard reveal d2">
+        <div class="stars">★★★★★</div>
+        <p class="tcard-text">"Showed up on time, did exactly what they said, and the lawn has never looked better. Simple as that."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">MK</div>
+          <div><div class="tcard-name">Michael K.</div><div class="tcard-role">Property Manager, NSW</div></div>
+        </div>
+      </div>
+
+      <div class="tcard reveal d3">
+        <div class="stars">★★★★★</div>
+        <p class="tcard-text">"Three quotes — GreenEdge were the only team who actually listened to what we wanted instead of telling us what was easiest for them."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">JP</div>
+          <div><div class="tcard-name">James & Paula</div><div class="tcard-role">Couple, Queensland</div></div>
+        </div>
+      </div>
+
+      <div class="tcard reveal d1">
+        <div class="stars">★★★★★</div>
+        <p class="tcard-text">"Worth every dollar. Our building has never had so many tenant compliments."</p>
+        <div class="tcard-author">
+          <div class="tcard-av" style="background: var(--green-700); color: var(--green-200);">RT</div>
+          <div><div class="tcard-name">Rachel T.</div><div class="tcard-role">Strata Manager</div></div>
+        </div>
+      </div>
+
+      <div class="tcard reveal d2">
+        <div class="stars">★★★★★</div>
+        <p class="tcard-text">"Installed our irrigation system and we've cut our water bill by about 30%. Brilliant investment. The team explained everything and were completely respectful of the property throughout."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">DN</div>
+          <div><div class="tcard-name">David N.</div><div class="tcard-role">Acreage Owner, WA</div></div>
+        </div>
+      </div>
+
+      <div class="tcard reveal d3">
+        <div class="stars">★★★★★</div>
+        <p class="tcard-text">"Quick to respond, fair on pricing, and they genuinely care about doing good work."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">AW</div>
+          <div><div class="tcard-name">Amy W.</div><div class="tcard-role">Homeowner, SA</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT & MAP ===== -->
+<section class="section" id="contact" style="background: var(--neutral-50);">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Let's talk about your space</h2>
+      <p class="section-sub">Fill out the form and we'll get back to you within one business day. No obligation, no pressure.</p>
+    </div>
+    <div class="contact-layout">
+
+      <!-- FORM — replace YOUR_FORM_ID with your Formspree form ID -->
+      <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="reveal-left">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="fName">First Name</label>
+            <input class="form-input" type="text" id="fName" name="firstName" placeholder="James" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lName">Last Name</label>
+            <input class="form-input" type="text" id="lName" name="lastName" placeholder="Anderson" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="james@example.com.au" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone</label>
+          <input class="form-input" type="tel" id="phone" name="phone" placeholder="04xx xxx xxx">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="service">Service Interested In</label>
+          <select class="form-input" id="service" name="service">
+            <option value="">Select a service…</option>
+            <option>Garden Design</option>
+            <option>Lawn Maintenance</option>
+            <option>Hardscaping</option>
+            <option>Irrigation Systems</option>
+            <option>Tree & Shrub Care</option>
+            <option>Commercial Grounds</option>
+            <option>Not sure yet — just want to chat</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Tell us about your property</label>
+          <textarea class="form-input" id="message" name="message" placeholder="Property size, what it looks like now, what you're hoping to achieve…"></textarea>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">Send Enquiry →</button>
+        <div class="form-success" id="formSuccess">✅ &nbsp;Thanks — we'll be in touch within one business day.</div>
+      </form>
+
+      <!-- MAP & INFO -->
+      <div class="reveal-right">
+        <div class="map-wrap">
+          <!-- Replace with your actual city coordinates once decided -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d201169.09917959085!2d144.7634!3d-37.8136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sau!4v1714100000000!5m2!1sen!2sau"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Service Area — Melbourne, Australia">
+          </iframe>
+        </div>
+        <div class="contact-info">
+          <div class="ci-item"><span class="ci-icon">📍</span><div><span class="ci-strong">Service Area</span>Greater Melbourne & surrounds</div></div>
+          <div class="ci-item"><span class="ci-icon">📞</span><div><span class="ci-strong">Phone</span>04xx xxx xxx</div></div>
+          <div class="ci-item"><span class="ci-icon">✉️</span><div><span class="ci-strong">Email</span>hello@greenedgelandscapes.com.au</div></div>
+          <div class="ci-item"><span class="ci-icon">🕒</span><div><span class="ci-strong">Hours</span>Monday – Saturday: 7am – 5pm</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-logo">Green<em>Edge</em></span>
+        <p class="footer-desc">Premium landscaping and garden design for residential and commercial properties across Australia. Quality work, honest pricing — every single time.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Garden Design</a></li>
+          <li><a href="#services">Lawn Maintenance</a></li>
+          <li><a href="#services">Hardscaping</a></li>
+          <li><a href="#services">Irrigation</a></li>
+          <li><a href="#services">Tree Care</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#portfolio">Our Work</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="fi">📍 Melbourne, Victoria</div>
+        <div class="fi">📞 04xx xxx xxx</div>
+        <div class="fi">✉️ hello@greenedgelandscapes.com.au</div>
+        <div class="fi" style="color: var(--warning);">⭐ 4.9 on Google Reviews</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 GreenEdge Landscapes. All rights reserved.</span>
+      <span style="color: var(--green-400);">🌿 Proudly Australian</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== FLOATING ACTION BUTTON ===== -->
+<!-- Replace 0400000000 with the owner's actual mobile number -->
+<a class="fab hidden" id="fab" href="tel:+61400000000" aria-label="Call us now">
+  <span>📞</span>
+  <span>Call Now</span>
+</a>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+/* ---- HERO SLIDER ---- */
+(function() {
+  const track   = document.getElementById('heroTrack');
+  const slides  = track.querySelectorAll('.hero-slide');
+  const dots    = document.querySelectorAll('.hero-dot');
+  let current   = 0;
+  let timer;
+
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = ((idx % slides.length) + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function startAuto() { timer = setInterval(() => goTo(current + 1), 5500); }
+  function resetAuto()  { clearInterval(timer); startAuto(); }
+
+  document.getElementById('heroNext').addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+  document.getElementById('heroPrev').addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+  dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.i); resetAuto(); }));
+
+  startAuto();
+})();
+
+
+/* ---- INTERSECTION OBSERVER — SCROLL REVEAL ---- */
+(function() {
+  const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
+})();
+
+
+/* ---- FLOATING BUTTON — appears after hero scrolls out ---- */
+(function() {
+  const fab  = document.getElementById('fab');
+  const hero = document.getElementById('hero');
+  const obs  = new IntersectionObserver((entries) => {
+    fab.classList.toggle('hidden', entries[0].isIntersecting);
+  }, { threshold: 0.1 });
+  obs.observe(hero);
+})();
+
+
+/* ---- HAMBURGER MENU ---- */
+(function() {
+  const btn     = document.getElementById('hamburger');
+  const menu    = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+
+  function openMenu() {
+    btn.classList.add('open');
+    menu.classList.add('open');
+    overlay.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+    overlay.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', () => {
+    btn.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  overlay.addEventListener('click', closeMenu);
+
+  // Close on any link tap
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+})();
+
+
+/* ---- FORMSPREE AJAX SUBMISSION ---- */
+(function() {
+  const form    = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+  const btn     = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method:  'POST',
+        body:    new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.reset();
+        success.style.display = 'flex';
+        btn.textContent = 'Sent ✓';
+      } else {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Connection error — try again';
+      btn.disabled = false;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
